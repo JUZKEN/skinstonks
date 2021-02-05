@@ -1,6 +1,6 @@
 {
    "MONGODB_URI": "MONGODB_URI",
-   "JWT_SECRET": "vividly_JWT_SECRET",
+   "JWT_SECRET": "bitskins_trading_JWT_SECRET",
    "SENDGRID": {
       "API_KEY": "SENDGRID_API_KEY",
       "USERNAME": "SENDGRID_USERNAME",

@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const helmet = require('helmet');
 const compression = require('compression');
 const xss = require('xss-clean');
@@ -8,7 +9,6 @@ const mongoSanitize = require('express-mongo-sanitize');
 const { apiLimiter } = require('./api/middleware/limiter');
 const error = require('./api/middleware/error');
 const users = require('./api/routes/users');
-const photos = require('./api/routes/photos');
 const auth = require('./api/routes/auth');
 
 module.exports = function(app) {
@@ -17,6 +17,8 @@ module.exports = function(app) {
 
    // Compress HTTP responses.
    app.use(compression());
+
+   app.use(cors());
 
    // Limit request from the same API 
    app.use('/api', apiLimiter);
@@ -36,7 +38,6 @@ module.exports = function(app) {
 
    // Routes
    app.use('/api/users', users);
-   app.use('/api/photos', photos);
    app.use('/api/auth', auth);
 
    // Handling undefined routes.

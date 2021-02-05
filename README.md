@@ -1,2 +1,3 @@
-# NodeJS REST API
-NodeJS backend for future web/mobile app
+# Bitskins Trading App
+
+Web app that displays sales from bitskins.com for potential profit.

@@ -16,6 +16,7 @@ exports.recover = async (req, res, next) => {
    await user.save();
 
    // Send email
+   // TODO: link to frontend page for resetting password
    let link = "http://" + req.headers.host + "/api/auth/reset/" + user.resetPasswordToken;
    let html = `<p>Hi ${user.username}</p><p>Please click on the following <a href="${link}">link</a> to reset your password.</p> 
    <p>If you did not request this, please ignore this email and your password will remain unchanged.</p>`
