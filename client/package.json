@@ -1,5 +1,5 @@
 {
-  "name": "bitskins_trading_client",
+  "name": "skinstonks_client",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3001/",

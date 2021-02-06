@@ -1,5 +1,5 @@
 {
-   "MONGODB_URI": "mongodb://localhost/bitskins_trading",
+   "MONGODB_URI": "mongodb://localhost/skinstonks",
    "JWT_SECRET": "",
    "SENDGRID": {
       "API_KEY": "",
