@@ -15,10 +15,10 @@ module.exports = function(app) {
    // Set security HTTP headers
    app.use(helmet());
 
+   app.use(cors());
+
    // Compress HTTP responses.
    app.use(compression());
-
-   app.use(cors());
 
    // Limit request from the same API 
    app.use('/api', apiLimiter);

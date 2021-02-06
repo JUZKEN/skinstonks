@@ -2,7 +2,7 @@ const User = require('../models/user');
 
 exports.index = async (req, res, next) => {
    const users = await User.find().select('-password');
-   if (!users.length) return res.status(404).json({message: 'Could not find any users.'});
+   if (!users.length) return res.status(204).json({message: 'Could not find any users.'});
    res.send(users);
 };
 

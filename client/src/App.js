@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import React from 'react';
+import axios from 'axios';
 
 class App extends React.Component {
 
@@ -11,14 +12,15 @@ class App extends React.Component {
     }
   }
 
-  callAPI() {
-    fetch('http://localhost:3001/api/users')
-    .then(res => res.text())
-    .then(res => this.setState({ apiRes: res }))
-  }
-
   componentDidMount() {
-    this.callAPI();
+    axios.get('/api/users')
+    .then(res => {
+      this.setState({ apiRes: res.data });
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
 
   render () {
