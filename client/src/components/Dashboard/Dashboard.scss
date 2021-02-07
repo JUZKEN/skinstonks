@@ -1,2 +1,11 @@
 .Dashboard {
+  &-box {
+    margin-bottom: $spacer * 1.5;
+    padding: $spacer * 2 $spacer * 3;
+    background-color: $primary-color-dark;
+    border-radius: 35px;
+    > h2 {
+      margin-bottom: 0;
+    }
+  }
 }
