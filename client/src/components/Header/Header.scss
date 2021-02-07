@@ -1,0 +1,10 @@
+#Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacer * 3;
+
+  .Page-title {
+    color: $primary-color;
+  }
+}

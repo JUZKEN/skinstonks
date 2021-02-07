@@ -1,0 +1,36 @@
+@import "./variables.scss";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+// Components
+@import "./App/App.scss";
+@import "./Navigation/Navigation.scss";
+@import "./Dashboard/Dashboard.scss";
+@import "./Header/Header.scss";
+
+// General
+body {
+  font-family: $font-family-base;
+  font-weight: $font-weight;
+  background-color: $body-bg;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $text-color;
+  font-weight: $font-weight;
+}
+
+#Wrapper {
+  padding: $spacer * 3 $spacer * 5 $spacer * 3 $spacer * 3;
+  margin-left: $sidebar-width;
+}
+
+button {
+  border: none;
+  background: transparent;
+  padding: 0;
+}
