@@ -1,6 +1,14 @@
 {
    "MONGODB_URI": "mongodb://localhost/skinstonks",
    "JWT_SECRET": "",
+   "BITSKINS_API_KEY": "",
+   "BITSKINS_SECRET": "",
+   "SEARCH" : {
+      "MIN_PRICE": 35,
+      "MAX_PRICE": 800,
+      "MIN_TOTAL_ITEMS": 4,
+      "MIN_POTENTIAL_PROFIT": 7
+   },
    "SENDGRID": {
       "API_KEY": "",
       "USERNAME": "",

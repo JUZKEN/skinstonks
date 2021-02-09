@@ -21,5 +21,9 @@ app.set('view engine', 'pug');
 // Routes
 require('./routes')(app);
 
+// Bitskins
+// require('./recommended_listings')();
+require('./recommended_listings-socket')();
+
 const port = process.env.PORT || 3001;
 app.listen(port, () => winston.info(`Listening on port ${port}...`));
