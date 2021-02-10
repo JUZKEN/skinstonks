@@ -46,6 +46,7 @@
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
-    "webpack": "^4.44.2"
+    "webpack": "^4.44.2",
+    "webpack-cli": "^4.5.0"
   }
 }
