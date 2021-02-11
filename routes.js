@@ -10,6 +10,7 @@ const { apiLimiter } = require('./api/middleware/limiter');
 const error = require('./api/middleware/error');
 const users = require('./api/routes/users');
 const auth = require('./api/routes/auth');
+const listings = require('./api/routes/listings');
 
 module.exports = function(app) {
    // Set security HTTP headers
@@ -39,9 +40,11 @@ module.exports = function(app) {
    // Routes
    app.use('/api/users', users);
    app.use('/api/auth', auth);
+   app.use('/api/listings', listings);
 
    // Handling undefined routes.
    app.use('*', (req, res, next) => {
+      // TODO: Show 404 page from react.js frontend
       res.status(404).json({message: 'Undefined Route'});
    });
 

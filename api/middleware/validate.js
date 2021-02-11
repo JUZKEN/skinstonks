@@ -4,7 +4,7 @@ const passwordComplexity = require("joi-password-complexity");
 exports.register = (req, res, next) => {
    const { error } = Joi.object({
       username: Joi.string().alphanum().min(2).max(30).required(),
-      name: Joi.string().max(50).required(),
+      name: Joi.string().max(50).optional(),
       email: Joi.string().min(5).max(255).required().email(),
       password: passwordComplexity(),
       confirmPassword: Joi.any()

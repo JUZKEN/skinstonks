@@ -29,7 +29,9 @@ class BitskinsAPI {
          const res = await axios.get(url);
          return res.data;
        } catch (err) {
-         winston.error(err.message, err);
+         winston.error(err.response, err);
+         console.log(`Failed URL: ${url}`);
+         return err.response;
        }
    }
 
