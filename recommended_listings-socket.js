@@ -37,7 +37,22 @@ module.exports = async function() {
          'price': data.price,
          'potential_profit': recommendedListing.potentialProfit,
       });
-   })
+   });
+
+   socket.on('inventory_changes:delisted_or_sold', async (data) => {
+      await Listing.findOneAndDelete({ item_id: data.item_id});
+   });
+
+   socket.on('inventory_changes:price_changed', async (data) => {
+      const listing = await Listing.findOne({ item_id: data.item_id});
+      if (!listing) return;
+
+      let priceDiff = listing.price - parseFloat(data.price);
+      let newPotentialProfit = priceDiff + listing.potential_profit;
+
+      listing.potential_profit = newPotentialProfit;
+      await listing.save();
+   });
 
 }
 
