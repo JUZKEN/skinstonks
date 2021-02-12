@@ -36,7 +36,7 @@
     "joi-password-complexity": "^4.2.1",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.20",
-    "mongoose": "^5.10.9",
+    "mongoose": "^5.11.15",
     "nodemailer": "^6.4.14",
     "notp": "^2.0.3",
     "pug": "^3.0.0",
