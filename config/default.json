@@ -1,6 +1,7 @@
 {
    "MONGODB_URI": "mongodb://localhost/skinstonks",
    "JWT_SECRET": "",
+   "SECRET_KEY": "",
    "BITSKINS_API_KEY": "",
    "BITSKINS_SECRET": "",
    "SEARCH" : {

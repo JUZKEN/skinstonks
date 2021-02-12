@@ -1,6 +1,16 @@
 const Joi = require('joi');
 const passwordComplexity = require("joi-password-complexity");
 
+exports.set_api_keys = (req, res, next) => {
+   const { error } = Joi.object({
+      api_key: Joi.string().required(),
+      secret: Joi.string().required()
+   }).validate(req.body);
+
+   if (error) return res.status(400).json({message: error.details[0].message});
+   next();
+}
+
 exports.register = (req, res, next) => {
    const { error } = Joi.object({
       username: Joi.string().alphanum().min(2).max(30).required(),

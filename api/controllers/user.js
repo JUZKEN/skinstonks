@@ -18,7 +18,7 @@ exports.delete = async (req, res, next) => {
 };
 
 exports.update = async (req, res, next) => {
-   const { username, name } = req.body;
+   const { username } = req.body;
 
    // If username is passed, check if its unique
    if (username) {
