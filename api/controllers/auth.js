@@ -22,15 +22,15 @@ exports.register = async (req, res, next) => {
 };
 
 exports.login = async (req, res, next) => {
-   const { email, password } = req.body;
+   const { username, password } = req.body;
    const ipAddress = req.ip;
 
-   let user = await User.findOne({ email });
-   if (!user) return res.status(401).send('The email adress is not associated with any account.');
+   let user = await User.findOne({ username });
+   if (!user) return res.status(401).send('That username is not associated with any account.');
 
    // Validate password
    const validPassword = await user.comparePassword(password);
-   if (!validPassword) return res.status(401).send('Invalid email or password.');
+   if (!validPassword) return res.status(401).send('Invalid username or password.');
 
    // Check if user is not verified
    if (!user.isVerified) return res.status(401).json({ message: 'Your account has not been verified.' });
