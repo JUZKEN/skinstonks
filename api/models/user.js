@@ -65,7 +65,6 @@ userSchema.methods.generateAuthToken = function() {
 }
 
 userSchema.methods.generateRefreshToken = function(ipAddress) {
-   // Refresh token that expires in 7 days
    return new RefreshToken({
       user: this._id,
       token: crypto.randomBytes(40).toString('hex'),
