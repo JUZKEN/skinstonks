@@ -14,7 +14,6 @@ exports.set_api_keys = (req, res, next) => {
 exports.register = (req, res, next) => {
    const { error } = Joi.object({
       username: Joi.string().alphanum().min(2).max(30).required(),
-      name: Joi.string().max(50).optional(),
       email: Joi.string().min(5).max(255).required().email(),
       password: passwordComplexity(),
       confirmPassword: Joi.any()
@@ -39,7 +38,6 @@ exports.login = (req, res, next) => {
 exports.userUpdate = (req, res, next) => {
    const { error } = Joi.object({
       username: Joi.string().alphanum().min(2).max(30).optional(),
-      name: Joi.string().max(50).optional()
    }).validate(req.body);
 
    if (error) return res.status(400).json({message: error.details[0].message});

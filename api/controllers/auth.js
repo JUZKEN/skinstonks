@@ -14,7 +14,7 @@ exports.register = async (req, res, next) => {
    if (user) return res.status(401).send('A user is already registered with the given username');
 
    // Create and save the new user
-   const newUser = new User(_.pick(req.body, ['username', 'name', 'email', 'password']));
+   const newUser = new User(_.pick(req.body, ['username', 'email', 'password']));
    await newUser.save();
 
    // Send a verification email
@@ -43,7 +43,7 @@ exports.login = async (req, res, next) => {
    await refreshToken.save();
 
    // Send tokens and user data to the client
-   res.json({ user: _.pick(user, ['username', 'name', 'email']), jwtToken: jwtToken, refreshToken: refreshToken.token });
+   res.json({ user: _.pick(user, ['username', 'email']), jwtToken: jwtToken, refreshToken: refreshToken.token });
 };
 
 exports.verify = async (req, res, next) => {

@@ -20,7 +20,7 @@ exports.refresh = async (req, res, next) => {
    const jwtToken = user.generateAuthToken();
 
    // Send tokens and user data to the client
-   res.json({ user: _.pick(user, ['username', 'name', 'email']), jwtToken: jwtToken, refreshToken: newRefreshToken.token });
+   res.json({ user: _.pick(user, ['username', 'email']), jwtToken: jwtToken, refreshToken: newRefreshToken.token });
 }
 
 exports.revoke = async (req, res, next) => {
