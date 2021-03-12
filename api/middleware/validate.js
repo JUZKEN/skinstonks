@@ -16,9 +16,6 @@ exports.register = (req, res, next) => {
       username: Joi.string().alphanum().min(2).max(30).required(),
       email: Joi.string().min(5).max(255).required().email(),
       password: passwordComplexity(),
-      confirmPassword: Joi.any()
-      .equal(Joi.ref('password'))
-      .required()
    }).validate(req.body);
 
    if (error) return res.status(400).json({message: error.details[0].message});
@@ -56,9 +53,6 @@ exports.recover = (req, res, next) => {
 exports.resetPassword = (req, res, next) => {
    const { error } = Joi.object({
       password: passwordComplexity(),
-      confirmPassword: Joi.any()
-      .equal(Joi.ref('password'))
-      .required()
    }).validate(req.body);
 
    if (error) return res.status(400).json({message: error.details[0].message});
