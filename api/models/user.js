@@ -37,6 +37,10 @@ const userSchema = new mongoose.Schema({
       type: Boolean,
       default: false
    },
+   favorite_items: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Listing'
+   }],
    isAdmin: Boolean
 }, {timestamps: true});
 
