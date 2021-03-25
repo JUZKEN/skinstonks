@@ -28,8 +28,8 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging')
 require('./routes')(app);
 
 // Bitskins
-// require('./recommended_listings')();
-require('./recommended_listings-socket')();
+// require('./api/utils/recommended_listings')();
+require('./api/utils/listings/recommended_listings-socket')();
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => winston.info(`Listening on port ${port}...`));

@@ -18,6 +18,4 @@ router.delete('/unfavorite/:id', auth, Listing.unfavorite);
 // Index user's favorite listings
 router.get('/me', auth, Listing.me);
 
-// TODO: Remove listing route (+ use this endpoint when item sold/removed)
-
 module.exports = router;

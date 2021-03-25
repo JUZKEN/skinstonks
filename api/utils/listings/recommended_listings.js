@@ -1,7 +1,7 @@
 const config = require('config');
 const winston = require('winston');
-const Listing = require('./api/models/listing');
-const BitskinsAPI = require('./api/utils/BitskinsAPI');
+const Listing = require('../models/listing');
+const BitskinsAPI = require('./BitskinsAPI');
 
 const API = new BitskinsAPI(config.get('BITSKINS_API_KEY'), config.get('BITSKINS_SECRET'));
 

@@ -1,10 +1,8 @@
 const winston = require('winston');
 const config = require('config');
-const _ = require('lodash');
-const { Query } = require('mongoose');
-const Listing = require('./api/models/listing');
-const BitskinsAPI = require('./api/utils/BitskinsAPI');
-const BitskinsWS = require('./api/utils/BitskinsWS');
+const Listing = require('../../models/listing');
+const BitskinsAPI = require('../BitskinsAPI');
+const BitskinsWS = require('../BitskinsWS');
 
 const socket = new BitskinsWS;
 const API = new BitskinsAPI(config.get('BITSKINS_API_KEY'), config.get('BITSKINS_SECRET'));
