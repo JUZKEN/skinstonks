@@ -9,8 +9,8 @@ const Listing = require('../controllers/listing');
 // Index all listings
 router.get('/', auth, Listing.index);
 
-// Add listing to favorites
-router.post('/swipe/:id', [auth, swipe], Listing.swipe);
+// Swipe listing
+router.post('/swipe/:id', [auth, validate.swipe], Listing.swipe);
 
 // Delete listing from favorites
 router.delete('/unfavorite/:id', auth, Listing.unfavorite);

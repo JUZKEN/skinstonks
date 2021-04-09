@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const Listing = require('../models/listing');
+const _ = require('lodash');
 
 exports.index = async (req, res, next) => {
    const listings = await Listing.find();
@@ -17,14 +18,14 @@ exports.swipe = async (req, res, next) => {
    const user = await User.findById(req.user._id);
 
    let userItemsTarget = swipeIsFavorite ? user.favorite_items : user.disliked_items;
-
+   
    const isDuplicated = userItemsTarget.includes(req.params.id);
    if (isDuplicated) return res.status(409).json({message: 'This item was already swiped.'});
 
    await userItemsTarget.push(listing._id);
    await user.save();
 
-   res.status(200).json({message: 'Listing successfully swiped.'});
+   res.status(200).json(_.pick(user, ['favorite_items', 'disliked_items']));
 };
 
 exports.unfavorite = async (req, res, next) => {
