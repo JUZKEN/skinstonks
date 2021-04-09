@@ -8,49 +8,31 @@ exports.index = async (req, res, next) => {
    res.status(200).send(listings);
 };
 
-exports.favorite = async (req, res, next) => {
+exports.swipe = async (req, res, next) => {
+   swipeIsFavorite = req.body.swipe_is_favorite;
+
    const listing = await Listing.findById(req.params.id);
    if (!listing) return res.status(404).json({message: 'Could not find the listing with the given id.'});
 
    const user = await User.findById(req.user._id);
 
-   const isDuplicated = user.favorite_items.includes(req.params.id);
-   if (isDuplicated) return res.status(409).json({message: 'This item is already in your favorites.'});
+   let userItemsTarget = swipeIsFavorite ? user.favorite_items : user.disliked_items;
 
-   await user.favorite_items.push(listing._id);
+   const isDuplicated = userItemsTarget.includes(req.params.id);
+   if (isDuplicated) return res.status(409).json({message: 'This item was already swiped.'});
+
+   await userItemsTarget.push(listing._id);
    await user.save();
 
-   res.status(200).json({message: 'Listing successfully added to your favorites.'});
-}
+   res.status(200).json({message: 'Listing successfully swiped.'});
+};
 
 exports.unfavorite = async (req, res, next) => {
    await User.findByIdAndUpdate(req.user._id, { $pull: { favorite_items: req.params.id } });
    res.status(200).json({message: 'Listing was unfavorited'});
 }
 
-exports.dislike = async (req, res, next) => {
-   const listing = await Listing.findById(req.params.id);
-   if (!listing) return res.status(404).json({message: 'Could not find the listing with the given id.'});
-
-   const user = await User.findById(req.user._id);
-
-   const isDuplicated = user.disliked_items.includes(req.params.id);
-   if (isDuplicated) return res.status(409).json({message: 'This item was already disliked.'});
-
-   await user.disliked_items.push(listing._id);
-   await user.save();
-
-   res.status(200).json({message: 'Listing successfully disliked.'});
-}
-
 exports.undislike = async (req, res, next) => {
    await User.findByIdAndUpdate(req.user._id, { $pull: { disliked_items: req.params.id } });
    res.status(200).json({message: 'Listing was undisliked'});
-}
-
-exports.me = async (req, res, next) => {
-   const user = await User.findById(req.user._id);
-   if (!user.favorite_items.length) return res.status(404).json({message: 'You have no listings in your favorites.'});
-
-   res.status(200).send(user.favorite_items);
 }

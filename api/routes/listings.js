@@ -10,18 +10,12 @@ const Listing = require('../controllers/listing');
 router.get('/', auth, Listing.index);
 
 // Add listing to favorites
-router.post('/favorite/:id', auth, Listing.favorite);
+router.post('/swipe/:id', [auth, swipe], Listing.swipe);
 
 // Delete listing from favorites
 router.delete('/unfavorite/:id', auth, Listing.unfavorite);
 
-// Add listing to disliked items
-router.post('/dislike/:id', auth, Listing.dislike);
-
 // Remove listing from disliked items
 router.post('/undislike/:id', auth, Listing.undislike);
-
-// Index user's favorite listings
-router.get('/me', auth, Listing.me);
 
 module.exports = router;

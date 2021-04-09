@@ -66,3 +66,12 @@ exports.revokeToken = (req, res, next) => {
    if (error) return res.status(400).json({message: error.details[0].message});
    next();
 }
+
+exports.swipe = (req, res, next) => {
+   const { error } = Joi.object({
+      swipe_is_favorite: Joi.bool().required(),
+   }).validate(req.body);
+
+   if (error) return res.status(400).json({message: error.details[0].message});
+   next();
+}
