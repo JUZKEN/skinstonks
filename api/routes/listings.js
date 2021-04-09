@@ -15,6 +15,12 @@ router.post('/favorite/:id', auth, Listing.favorite);
 // Delete listing from favorites
 router.delete('/unfavorite/:id', auth, Listing.unfavorite);
 
+// Add listing to disliked items
+router.post('/dislike/:id', auth, Listing.dislike);
+
+// Remove listing from disliked items
+router.post('/undislike/:id', auth, Listing.undislike);
+
 // Index user's favorite listings
 router.get('/me', auth, Listing.me);
 

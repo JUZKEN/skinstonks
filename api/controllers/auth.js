@@ -43,7 +43,7 @@ exports.login = async (req, res, next) => {
    await refreshToken.save();
 
    // Send tokens and user data to the client
-   res.json({ user: _.pick(user, ['username', 'email', 'favorite_items']), jwtToken: jwtToken, refreshToken: refreshToken.token });
+   res.json({ user: _.pick(user, ['username', 'email', 'favorite_items', 'disliked_items']), jwtToken: jwtToken, refreshToken: refreshToken.token });
 };
 
 exports.verify = async (req, res, next) => {
