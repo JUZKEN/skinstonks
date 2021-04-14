@@ -3,7 +3,7 @@ const RefreshToken = require('../models/refreshToken');
 
 exports.refresh = async (req, res, next) => {
    const token = req.header('x-auth-refresh-token');
-   if (!token) return res.status(401).send('Access denied. No refresh token provided.');
+   if (!token) return res.status(401).json({message: 'Access denied. No refresh token provided.'});
 
    const ipAddress = req.ip;
 

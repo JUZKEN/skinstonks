@@ -7,11 +7,11 @@ const VerificationToken = require('../models/verificationToken');
 exports.register = async (req, res, next) => {
    // Check if there is a user with the same email
    let user = await User.findOne({ email: req.body.email });
-   if (user) return res.status(401).send('A user is already registered with the given email');
+   if (user) return res.status(401).send({message: 'A user is already registered with the given email'});
 
    // Check if there is a user with the same username
    user = await User.findOne({ username: req.body.username });
-   if (user) return res.status(401).send('A user is already registered with the given username');
+   if (user) return res.status(401).send({message: 'A user is already registered with the given username'});
 
    // Create and save the new user
    const newUser = new User(_.pick(req.body, ['username', 'email', 'password']));
@@ -26,11 +26,11 @@ exports.login = async (req, res, next) => {
    const ipAddress = req.ip;
 
    let user = await User.findOne({ username });
-   if (!user) return res.status(401).send('That username is not associated with any account.');
+   if (!user) return res.status(401).send({message: 'That username is not associated with any account.'});
 
    // Validate password
    const validPassword = await user.comparePassword(password);
-   if (!validPassword) return res.status(401).send('Invalid username or password.');
+   if (!validPassword) return res.status(401).send({message: 'Invalid username or password.'});
 
    // Check if user is not verified
    if (!user.isVerified) return res.status(401).json({ message: 'Your account has not been verified.' });

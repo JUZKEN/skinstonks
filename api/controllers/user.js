@@ -23,7 +23,7 @@ exports.update = async (req, res, next) => {
    // If username is passed, check if its unique
    if (username) {
       let usernameUsed = await User.findOne({ username: username });
-      if (usernameUsed) return res.status(401).send('A user is already registered with the given username');
+      if (usernameUsed) return res.status(401).send({message: 'A user is already registered with the given username'});
    }
 
    const updatedUser = await User.findByIdAndUpdate(req.user._id, { $set: req.body }, { new: true })
